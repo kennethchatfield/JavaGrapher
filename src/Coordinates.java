@@ -38,9 +38,9 @@ public class Coordinates {
 		return coordinates;
 	}
 	
-	public static void randomize( int limit ) {
+	public static void randomize( int limit, CoordinateGrid grid ) {
 		for( int index = 0; index < limit; index++ ) {
-			addCoordinate( Coordinate.createRandom() );
+			addCoordinate( Coordinate.createRandom( grid ) );
 		}
 	}
 

@@ -7,13 +7,10 @@ public class CoordinateGraph extends Canvas {
 	
 	
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	static int elementsLimit = 400;
 	
-	private CoordinateGrid coordinateGrid = new CoordinateGrid( new Coordinate(400, 400), new Coordinate() );
+	private CoordinateGrid coordinateGrid = new CoordinateGrid( new Coordinate(800, 800), new Coordinate() );
 	private CoordinateNetwork coordinateNetwork  = new CoordinateNetwork();
 	
 	
@@ -38,10 +35,9 @@ public class CoordinateGraph extends Canvas {
 	}
 	
 
-
 	public static void draw( CoordinateGraph graph, CoordinateGrid coordinateGrid, CoordinateNetwork coordinateNetwork ) {
 		JFrame frame = new JFrame("My Drawing");
-        graph.setSize((int)(coordinateGrid.getAxis().getX()), (int)(coordinateGrid.getAxis().getY()));
+        graph.setSize(800, 800);
         frame.add(graph);
         frame.pack();
         frame.setVisible(true);
@@ -50,9 +46,9 @@ public class CoordinateGraph extends Canvas {
 	
 
 	public static CoordinateGraph createRandom( ) {
+		CoordinateGrid coordinateGrid = new CoordinateGrid( new Coordinate(),  new Coordinate(800, 800) );
+		CoordinateNetwork coordinateNetwork = CoordinateNetwork.createRandom( elementsLimit, coordinateGrid );
 		
-		CoordinateNetwork coordinateNetwork = CoordinateNetwork.createRandom( elementsLimit );
-		CoordinateGrid coordinateGrid = new CoordinateGrid( new Coordinate(400, 400), new Coordinate() );
 		return create( coordinateGrid, coordinateNetwork );
 	}
 	public static CoordinateGraph create( CoordinateGrid _coordinateGrid, CoordinateNetwork _coordinateNetwork ) {

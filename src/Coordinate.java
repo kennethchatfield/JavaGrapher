@@ -36,17 +36,17 @@ public class Coordinate extends Element {
 		return ThreadLocalRandom.current().nextInt(min, max + 1);
 	}
 	
-	public static Coordinate createRandom() {
-		int min = 0;
-		int max = 400;
-		int randomX = getRandomInt(min, max);
-		int randomY = getRandomInt(min, max);
+	
+	
+	public static Coordinate createRandom( CoordinateGrid grid ) {
+		int randomX = getRandomInt(grid.getAxis().getX(), grid.getOrigin().getX());
+		int randomY = getRandomInt(grid.getAxis().getY(), grid.getOrigin().getY());
 		return new Coordinate(randomX, randomY);
 	}
 	
 	
 	public static void draw( Graphics graphics, Coordinate coordinate ) {
-		graphics.drawOval(coordinate.getX(), coordinate.getY(), 1, 1);
+		graphics.drawOval(coordinate.getX(), coordinate.getY(), 10, 10);
 	}
 	
 	public void draw( Graphics graphics ) {

@@ -2,18 +2,21 @@ import java.awt.Graphics;
 
 public class CoordinateNode extends CoordinateEdge {
 	
-	protected Coordinate previous;
+	private Coordinate previous;
 	
 	public CoordinateNode() {
-		super();
+	
 	}
 	
-	public CoordinateNode( Coordinate next  ) {
-		super( next );
+	public CoordinateNode( Coordinate current ) {
+		super( current );
+	}
+	public CoordinateNode( Coordinate current, Coordinate next  ) {
+		super( current, next );
 	}
 
-	public CoordinateNode( Coordinate next, Coordinate previous  ) {
-		this( next );
+	public CoordinateNode( Coordinate current, Coordinate next, Coordinate previous  ) {
+		this( current, next );
 		this.previous = previous;
 	}
 	
@@ -21,9 +24,9 @@ public class CoordinateNode extends CoordinateEdge {
 	public Coordinate getPrevious( ) {
 		return this.previous;
 	}
-	public Coordinate getNext( ) {
-		return this.next;
-	}
+//	public Coordinate getNext( ) {
+//		return this.next;
+//	}
 	
 	
 	
@@ -33,13 +36,18 @@ public class CoordinateNode extends CoordinateEdge {
 	
 	public void draw(Graphics graphics) {
 		super.draw( graphics );
-		Coordinate previous = getPrevious();
-		Coordinate next = getNext();
-		CoordinateNode.draw(graphics, previous, next, this);
+		CoordinateNode.draw(graphics, getPrevious(), getNext(), this);
 	}
 	public static void draw(Graphics graphics, Coordinate _previous, Coordinate _next, Coordinate _current) {
-		if( _previous != null ) Coordinate.drawTo(graphics, _current, _previous);
-		if( _next != null ) Coordinate.drawTo(graphics, _current, _next);
+		if( _previous != null ) {
+			Coordinate.draw(graphics, _previous);
+			Coordinate.drawTo(graphics, _current, _previous);
+		}
+		if( _next != null ) {
+			Coordinate.draw(graphics, _next);
+			Coordinate.drawTo(graphics, _current, _next);
+		}
+		Coordinate.draw(graphics, _current);
 		
 	}
 

@@ -8,14 +8,14 @@ public class CoordinateNetworkElement extends CoordinateNode {
 		super();
 	}
 	
-	public CoordinateNetworkElement( Coordinate next ) {
-		super( next );
-		this.next = next;
+	public CoordinateNetworkElement( Coordinate current ) {
+		super( current );
 	}
-	public CoordinateNetworkElement( Coordinate next, Coordinate previous ) {
-		super( next, previous );
-		this.next = next;
-		this.previous = previous;
+	public CoordinateNetworkElement( Coordinate current, Coordinate next ) {
+		super( current, next );
+	}
+	public CoordinateNetworkElement( Coordinate current, Coordinate next, Coordinate previous ) {
+		super( current, next, previous );
 	}
 
 	public boolean isEdge() {
@@ -25,16 +25,16 @@ public class CoordinateNetworkElement extends CoordinateNode {
 	
 	
 	
-	public static CoordinateNetworkElement createElement( Coordinate next ) {
-		return new CoordinateNetworkElement( next );
+	public static CoordinateNetworkElement createElement( Coordinate current, Coordinate next ) {
+		return new CoordinateNetworkElement( current, next );
 	}
-	public static CoordinateNetworkElement createElement( Coordinate next, Coordinate previous ) {
-		return new CoordinateNetworkElement( next, previous );
+	public static CoordinateNetworkElement createElement( Coordinate current, Coordinate next, Coordinate previous ) {
+		return new CoordinateNetworkElement( current, next, previous );
 	}
 	
-	public static CoordinateNetworkElement createRandom( ) {
-		if( Math.random() < 0.5 ) return CoordinateNetworkElement.createElement( Coordinate.createRandom() );
-		else return CoordinateNetworkElement.createElement( Coordinate.createRandom(), Coordinate.createRandom() );
+	public static CoordinateNetworkElement createRandom( CoordinateGrid grid ) {
+		if( Math.random() < 0.5 ) return CoordinateNetworkElement.createElement( Coordinate.createRandom( grid ), Coordinate.createRandom( grid ) );
+		else return CoordinateNetworkElement.createElement( Coordinate.createRandom( grid ), Coordinate.createRandom( grid ), Coordinate.createRandom( grid ) );
 	}
 
 	public static void main(String[] args) {

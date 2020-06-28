@@ -10,6 +10,10 @@ public class CoordinateNetworkElements {
 	
 	private Map<UUID,CoordinateNetworkElement> coordinateNetworkElements = new HashMap<>();
 	
+	private static Coordinate defaultAxis = new Coordinate(800, 800);
+	private static Coordinate defaultOrigin = new Coordinate(0, 0);
+	private static CoordinateGrid defaultGrid = new CoordinateGrid(defaultOrigin, defaultAxis);
+	
 	
 	public CoordinateNetworkElements() {}
 	
@@ -95,13 +99,12 @@ public class CoordinateNetworkElements {
 
 	
 	
-	public static CoordinateNetworkElements generateWithRandomElements( ) {
-		return generateWithRandomElements( 300 );
-	}
-	public static CoordinateNetworkElements generateWithRandomElements( int limit ) {
+
+	
+	public static CoordinateNetworkElements generateWithRandomElements( int limit, CoordinateGrid grid ) {
 		CoordinateNetworkElements coordinateNetworkElements = new CoordinateNetworkElements();
 		 for( int index = 0; index < limit; index++ ) {
-			 CoordinateNetworkElement randomCoordinateNetworkElement = CoordinateNetworkElement.createRandom();
+			 CoordinateNetworkElement randomCoordinateNetworkElement = CoordinateNetworkElement.createRandom( grid );
 			 coordinateNetworkElements.addElement( randomCoordinateNetworkElement );
 		 }
 		 return new CoordinateNetworkElements( coordinateNetworkElements);

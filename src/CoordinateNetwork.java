@@ -13,8 +13,8 @@ public class CoordinateNetwork {
 	public CoordinateNetworkElements getNetworkElements() {
 		return coordinateNetworkElements;
 	}
-	public static CoordinateNetwork createRandom( int limit ) {
-		CoordinateNetworkElements randomCoordinateNetworkElements = CoordinateNetworkElements.generateWithRandomElements( limit );
+	public static CoordinateNetwork createRandom( int limit, CoordinateGrid grid ) {
+		CoordinateNetworkElements randomCoordinateNetworkElements = CoordinateNetworkElements.generateWithRandomElements( limit, grid );
 		
 		return new CoordinateNetwork( randomCoordinateNetworkElements );
 	}
